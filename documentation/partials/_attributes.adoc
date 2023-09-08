@@ -1,0 +1,11 @@
+ifdef::env-vscode,env-gitlab[]
+ifdef::readme[]
+:imagesdir: docs/modules/ROOT/images
+endif::[]
+ifndef::readme[]
+:imagesdir: ../images
+endif::[]
+endif::[]
+
+:icons: font
+:toc:
