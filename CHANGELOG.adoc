@@ -1,0 +1,114 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## WEEK 2023.09.04
+
+### added 
+
+- function to formatted the terraform block in a ouput
+
+
+## Fixed
+
+- os.walk on os.scandir 
+
+
+
+## 2023.08.16
+
+### added 
+
+- V1 tuap.py 
+- analysis update fonction
+
+## Fixed
+
+- 
+
+
+## 2023.08.14
+
+### added 
+
+- start first version (fetch changelog and validate terraform folder )
+
+## Fixed
+
+- arguments -c -p or -r -p 
+
+## 2023.08.11
+
+### added 
+
+- new technology for the analysis fonction
+- updates specifications
+
+## Fixed
+
+- analysis fonction
+
+
+
+## 2023.08.10
+
+### added 
+
+- implementation of the function of retrieving the good part of the changelog in the function fetch remote changelog and fetch local changelog
+
+## Fixed
+
+- fetch local changelog 
+- fetch remote changelog 
+
+
+## 2023.08.09
+
+### added 
+
+- fonction to retrieve a text with a good version in a changelog (it had several versions  )
+
+## Fixed
+
+- terraform validate handling fonction 
+- remote fonction ( test internet connection && pattern version )
+
+
+
+## 2023.08.08
+
+### added 
+
+- terraform test validate handling fonction (terraform validate + terraform files handling )
+- analysis fonction with hcl2
+
+## Fixed
+
+- fix terraform validate fonction 
+
+
+## 2023.08.07
+
+### added 
+
+- add changelog 
+- terraform files handling fonction 
+
+## Fixed
+
+- fix terraform validate fonction 
+
+## 2023.08.04 
+
+### added 
+
+- create Jira
+- add readme
+- add prerequisites
+- Local fonction
+- Remote fonction
+- Terraform validate fonction
+- validate changelog fonction
+- validate connection fonction 
+
+

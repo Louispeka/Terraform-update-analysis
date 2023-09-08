@@ -1,0 +1,172 @@
+# Terraform Update Analysis 
+
+## Description
+
+This project aims to provide an automated tool for detecting and comparing modifications made to Terraform files against AWS changelogs. The main goal is to simplify and expedite the process of analyzing Terraform-based infrastructures, assisting DevOps teams in making informed decisions when updating their Terraform files based on AWS changes.
+
+The program will analyze Terraform files within a user-specified directory and identify additions, deletions, and modifications of resources, modules, and variables. The program will automatically retrieve the AWS changelog from the provider's GitHub page, but users can also provide the changelog manually.
+
+
+
+## Installation
+
+### Clone the project repository from GitLab:
+
+====
+
+[,CLI]
+----
+git clone https://app-git-vm01.acticall.net/lvane010/terraform-update-analysis-project.git
+----
+====
+
+
+### Install the required Python dependencies:
+
+====
+
+[,CLI]
+----
+pip3 install -r requirements.txt
+----
+====
+
+### Install the setup:
+
+====
+
+[,CLI]
+----
+python3 setup.py install
+----
+====
+
+## Usage
+
+Run the program using the following command:
+
+====
+Example of usage:
+[,CLI]
+----
+Python3 tuap.py -r v4.0.0 -p /Users/louis.vanelsuve/Desktop/projetTerra/ -o /Users/louis.vanelsuve/Desktop/projetTerra/save.txt
+----
+====
+
+
+
+The `-p` or `--path` option specifies the path to the directory containing the Terraform files to analyze. The `-r` or `--retrieve-version` option allows you to provide the desired AWS's changelog version number.
+
+
+====
+Example of output:
+[,TXT]
+----
+No updates needed for Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/test2.tf'.
+========================================
+No updates needed for Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/test1.tf'.
+========================================
+////////////////////////////////////////
+Updates to be made in Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/c/invalid.tf':
+Update : * resource/aws_elasticsearch_domain: `ebs_options.0.volume_type` can no longer be set to `""`; instead, remove or set to `null` ([#22954](https://github.com/hashicorp/terraform-provider-aws/issues/22954))
+Corresponding Terraform block:
+example_domain {
+  domain_name = "example-domain"
+  elasticsearch_version = "7.10"
+  ebs_options = [{'ebs_enabled': True, 'volume_type': 'standard', 'volume_size': 10}]
+  advanced_options {
+    rest.action.multi.allow_explicit_index = "true"
+  }
+  tags {
+    Name = "example-domain"
+  }
+}
+
+========================================
+Update : * resource/aws_instance: `private_ip` can no longer be set to `""`; remove or set to `null` ([#22948](https://github.com/hashicorp/terraform-provider-aws/issues/22948))
+Corresponding Terraform block:
+example_instance {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  private_ip = None
+  tags {
+    Name = "example-instance"
+  }
+}
+
+========================================
+Update : * resource/aws_lb_target_group: For `protocol = "TCP"`, `stickiness` can no longer be type set to `lb_cookie` even when `enabled = false`; instead use type `source_ip` ([#22996](https://github.com/hashicorp/terraform-provider-aws/issues/22996))
+Corresponding Terraform block:
+example_target_group {
+  name_prefix = "ex"
+  port = 80
+  protocol = "TCP"
+  stickiness = [{'type': 'source_ip', 'enabled': False}]
+  health_check = [{'path': '/'}]
+}
+
+========================================
+////////////////////////////////////////
+Updates to be made in Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/b/outputs.tf':
+Update : * resource/aws_instance: `private_ip` can no longer be set to `""`; remove or set to `null` ([#22948](https://github.com/hashicorp/terraform-provider-aws/issues/22948))
+========================================
+////////////////////////////////////////
+Updates to be made in Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/b/main.tf':
+Update : * resource/aws_instance: `private_ip` can no longer be set to `""`; remove or set to `null` ([#22948](https://github.com/hashicorp/terraform-provider-aws/issues/22948))
+Corresponding Terraform block:
+app_server {
+  ami = "ami-00575c0cbc20caf50"
+  instance_type = "t2.micro"
+  tags {
+    Name = "${var.instance_name}"
+  }
+}
+
+========================================
+No updates needed for Terraform file '/Users/louis.vanelsuve/Desktop/projetTerra/b/variables.tf'.
+========================================
+
+----
+====
+
+
+## Options
+
+The program supports the following options:
+
+`-h`, `--help`: Displays detailed help on the available program options.
+
+`-v`, `--version`: Displays the program version.
+
+`-p`, `--path`: Specifies the path to the directory containing the Terraform files to be analyzed.
+
+`-c`, `--changelog`: Specifies the path to the text file containing the AWS changelog.
+
+`-l`, `--list-versions`: Lists the available versions of the AWS changelog.
+
+`-r`, `--retrieve-version`: Specifies the desired version of the AWS changelog to retrieve.
+
+`-o`, `--output`: Specifies the output file where the analysis results must be saved.
+
+`--filter-type` TYPE: Filters the modifications by type (addition, deletion, modification).
+
+`--filter-resource` RESOURCE: Filters the modifications by resource type (e.g., aws_instance, aws_s3_bucket, etc.).
+
+--filter-module MODULE: Filters the modifications by Terraform module.
+
+`--filter-variable` VARIABLE: Filters the modifications by Terraform variable.
+
+`--include-details`: Includes additional details in the output, such as modified lines of code.
+
+`--exclude-path PATH`: Excludes specific files or directories from the analysis.
+
+`--no-output`: Executes the analysis without generating any output, useful for checking files without saving the results.
+
+`-q`, `--quiet`: Suppresses information messages and only displays the analysis results.
+
+`-f`, `--output-format`: Specifies the output format (e.g., text, JSON, CSV).
+
+
+## Contribution
+
+Contributions to the project are welcome! If you encounter any bugs, issues, or have improvements to suggest, feel free to submit a merge request or open an issue.
