@@ -1,9 +1,9 @@
 ifdef::env-vscode,env-gitlab[]
 ifdef::readme[]
-:imagesdir: docs/modules/ROOT/images
+:imagesdir: docs/modules/ROOT/images/
 endif::[]
 ifndef::readme[]
-:imagesdir: ../images
+:imagesdir: ../images/
 endif::[]
 endif::[]
 
