@@ -1,0 +1,175 @@
+= Functional Specification - Terraform Analysis Update Project with Python
+
+:description: Functional Specification 
+ifdef::env-vscode,env-gitlab[]
+include::../partials/_attributes.adoc[]
+endif::[]
+ifdef::env-site[]
+include::partial$_attributes.adoc[]
+endif::[]
+
+[abstract]
+{description}.
+
+== Introduction
+
+In today's rapidly evolving DevOps environment, managing code-defined infrastructures like Terraform becomes increasingly challenging for teams. The continuous maintenance and monitoring of changes require meticulous tracking of modifications made to Terraform resources and providers. A provider is a plugin that allows Terraform to interact with different cloud providers (e.g. AWS, Azure, Google Cloud) or other services (such as GitHub, Docker, etc.) to be able to use resources from the provider in order to create an infrastructure.  To address these challenges, this Terraform update analysis project aims to automate the change tracking process, saving valuable time for DevOps teams. By automating the review of Terraform files to identify modifications, our program must enhance accuracy and efficiency, significantly reducing the risk of human error and improving team productivity.
+
+=== Objective
+
+The goal of this project is to provide DevOps teams with a powerful and efficient tool to manage ever-changing Terraform infrastructures in order to save time costs. By automating the retrieval of the specified change log from the AWS provider and comparing it to Terraform files in a given folder, the program must efficiently detect and analyze changes to Terraform resources. 
+
+== Scope 
+
+The scope of the project "Terraform Update Analysis" with Python aims to provide an automated tool for detecting and comparing changes made to Terraform files in relation to AWS changelogs.
+
+The main objective is to simplify and expedite the process of analyzing Terraform-based infrastructures, assisting DevOps teams in making informed decisions when updating their Terraform files based on AWS changes.
+
+The program will analyze Terraform files located in a user-specified directory and detect additions, deletions, and modifications of resources, modules, and variables.
+
+The program will automatically retrieve the AWS changelog from the provider but will also allow the user to provide the changelog manually. The analysis results will be presented in a clear and readable output.
+
+However, it's important to note that the scope of the project is limited to analyzing Terraform files and comparing them with AWS changelogs; it does not include automatic modification of Terraform files or handling deployment or configuration processes related to Terraform infrastructure.
+
+
+
+== Workflow
+
+1.Fetch Remote Changelog
+ 
+The tool retrieves the specified changelog from the AWS provider (via GitHub). The goal is to retrieve the changelog so that you can then compare the changelog with the user's terraform files. The changelog is saved in text format. The paragraph containing the correct version of the changelog is retrieved for analysis.
+
+2.Fetch Local Changelog 
+
+The user has the option of providing the access path to the changelog if he does not wish to use the internet or if he does not have access. The changelog must saved in text format. The paragraph containing the correct version of the changelog is retrieved for analysis.
+
+3.Terraform Directory Validation
+
+The tool verifies if the specified directory contains valid Terraform files. It handles errors related to non-existing directories, empty directories, or files that do not adhere to Terraform syntax.
+
+The program checks the validity of the directory path and displays an error message if the directory does not exist or does not contain valid Terraform files.
+
+If the directory contains subdirectories, the program uses recursion to explore all subdirectories and their subdirectories to find all `.tf` files present in the entire directory tree.
+
+The program checks the terraform files to validate their contents in order to avoid distorting the result of the analysis.
+
+4.Terraform File Analysis
+
+The tool is designed to analyze Terraform files located in a user-specified directory. It detects the differences between the changelog and the terraform files such as resources or other elements.
+
+4.5.Filtering Options
+
+The user can use filtering options to refine the analysis results. Filtering modifications by type (addition, deletion, modification) or by resource type (e.g., aws_instance, aws_s3_bucket, etc.) and another options.
+
+5.Comparison with AWS Changelog
+
+A library allows the reading, analysis and comparison of the changelog and the user's terraform files to recover the differences.
+
+The program compares the detected modifications in the Terraform files with the entries in the retrieved AWS changelog.
+
+The results of the comparison are stored for generating the output.
+
+6.Types of Modifications
+
+The tool identifies additions, deletions, and modifications of Terraform resources, modules, and variables in the analyzed files. It provides detailed information about these modifications, including the resource type, resource name, and the number of occurrences detected.
+
+
+7.Clear Output Generation
+
+The tool generates clear and readable output that presents the identified modifications, including resource type, resource name, and the number of occurrences. If no modifications are detected, an appropriate message is displayed.
+
+
+8.Error Handling
+
+The program has error handling mechanisms to manage cases where the Terraform directory or the changelog file does not exist, the Terraform files are incorrect, or there are syntax errors.
+
+Clear and informative error messages are displayed to help the user resolve encountered issues.
+
+
+
+
+
+
+image::tuap.png[]
+
+== Stakeholders
+
+The primary stakeholders of this project are:
+
+Developers and DevOps teams working with Terraform.
+
+== Deliverable
+
+=== User Guide
+
+Detailed user guide must accompany the project, providing installation instructions, usage guidelines, and information about dependencies.
+
+Examples of usage and step-by-step guides must be included to aid in understanding and adopting the program.
+
+== User interface
+
+=== Command-Line Interface (CLI)
+
+The tool offers an intuitive command-line interface that facilitates the execution of the program. Users can specify the Terraform directory path to analyze, the desired AWS changelog version, and other relevant parameters.
+
+=== Functional and technical specification 
+
+A functional and technical specification must be provided with the tool for a total understanding of the project, presenting the objectives of the project, the detailed operation, the stakeholders and all the information representing the project.
+
+== Prerequisites
+
+=== Terraform Version
+
+The user must to install Terraform, the program must ensure compatibility with recent versions of Terraform.
+
+Consideration can be given to compatibility with older versions if necessary.
+
+
+== Dependencies 
+
+=== Python 
+
+The program must leverage relevant third-party Python libraries to perform changelog retrieval and Terraform file comparison.
+
+== Functional Requirements
+
+=== Choice of operating system
+
+The program must work on machines with a Mac or Windows operating system.
+
+== Non-functional Requirements
+
+=== Usability
+
+The program must have a user-friendly design, providing clear instructions for users.
+
+An intuitive command-line interface (CLI) can be implemented to facilitate easy program execution.
+
+=== Performance
+
+The program must be optimized to handle a significant number of Terraform files efficiently.
+
+Performance testing must be conducted to ensure the responsiveness of the program, even under high load conditions.
+
+=== Compatibility
+
+The program must be compatible with recent versions of Python and Terraform.
+
+Required Python dependencies must be specified clearly, and appropriate dependency management must be implemented.
+
+
+== Validation Test
+
+=== Functional validation
+
+Functional tests ensure that the various modules or components correctly implement the defined requirements.
+
+=== Solution validation
+
+Solution testing ensures that the defined requirements are met from a use case perspective. Each large use case is validated in isolation, and then all use cases are validated together. 
+
+The interest of these tests is to validate the stability of a solution in relation to the different modules that compose it.
+
+=== Performance and robustness validation
+
+Performance tests verify the compliance of the solution with respect to its performance requirements, while robustness tests must try to highlight any stability and reliability problems over time.
