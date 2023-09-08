@@ -1,0 +1,10 @@
+# Prerequisites
+
+- Python 3 or higher
+- pip3
+- Terraform
+- HCL2 Library (version 4.3.2)
+- Requests Library (version 2.31.0)
+- OS Library (pre-installed with Python 3)
+- Subprocess Library (pre-installed with Python 3)
+- Re library (pre-installed with Python 3)
