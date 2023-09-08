@@ -129,7 +129,7 @@ The document is not a valid changelog.
 
 After the connection test, the program retrieves the changelog, if this is not possible then it returns an error and stops.
 
-image::remote.png[]
+image::/images/remote.png[]
 
 === Fetch local changelog 
 
@@ -148,7 +148,7 @@ Error: Failed to retrieve changelog content from '{file_path}'.
 ----
 ====
 
-image::local.png[]
+image::/images/local.png[]
 
 === List versions
 
@@ -198,7 +198,7 @@ No Terraform files found in '{directory_path}'.
 ====
 
 
-image::handling.png[]
+image::/images/handling.png[]
 
 === Terraform File Analysis
 
@@ -219,7 +219,7 @@ The Terraform file is invalid. Do you want to continue without this file? (yes/n
 
 If the user write "yes", the program skip the invalid file and continue the analysis wihout the file, and if he write "no", the program stops.
 
-image::analysis.png[]
+image::/images/analysis.png[]
 
 
 === Comparison with the Changelog
@@ -279,7 +279,7 @@ No updates needed for Terraform file '{file_path}.
 ====
 
 
-image::output1.png[]
+image::/images/output.png[]
 
 
 
@@ -331,7 +331,7 @@ The document is not a valid changelog.
 ----
 ====
 
-image::changelog_valid.png[]
+image::/images/changelog_valid.png[]
 
 === Error Handling
 
