@@ -90,7 +90,7 @@ Clear and informative error messages are displayed to help the user resolve enco
 
 
 
-image::/images/tuap.png[]
+image::tuap.png[]
 
 == Stakeholders
 
